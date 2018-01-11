@@ -12,6 +12,7 @@ public class ZombiePlayer extends AnimatedActor {
         super();
         moveRegion = new TextureRegion[16]; // Number of animation frames
         idleRegion = new TextureRegion[16];
+
         for(int i = 0; i < moveRegion.length; i++){
             String filename = "skeleton-move_" + i + ".png";
             Texture texture = new Texture(Gdx.files.internal(filename));
