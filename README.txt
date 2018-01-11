@@ -1,3 +1,3 @@
-Simple game using the libGdx framework configured for desktop only. 
+Simple game using Gradle and the libGdx framework. Configured for desktop only. 
 
 How many braains can you eat?
