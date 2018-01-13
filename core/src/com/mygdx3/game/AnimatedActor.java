@@ -23,7 +23,8 @@ public class AnimatedActor extends Actor {
 
     protected TextureRegion keyframe;
     protected Rectangle boundary;
-    public float velocityX, velocityY;
+
+    private float velocityX, velocityY;
     protected float elapsedTime;
 
     protected float lastX, lastY;
@@ -38,25 +39,6 @@ public class AnimatedActor extends Actor {
         lastX = 0;
         lastY = 0;
         elapsedTime = 0;
-
-        /*for(int i = 0; i < moveRegion.length; i++){
-            String filename = "survivor-move_handgun_" + i + ".png";
-            Texture texture = new Texture(Gdx.files.internal(filename));
-            moveRegion[i] = new TextureRegion(texture);
-        }
-
-        for(int i = 0; i < idleRegion.length; i++){
-            String filename = "survivor-idle_handgun_" + i + ".png";
-            Texture texture = new Texture(Gdx.files.internal(filename));
-            idleRegion[i] = new TextureRegion(texture);
-        }
-
-        moveArray = new Array<TextureRegion>(moveRegion);
-        moveAnim = new Animation<TextureRegion>(0.1f, moveArray, Animation.PlayMode.LOOP_PINGPONG);
-
-        idleArray = new Array<TextureRegion>(idleRegion);
-        idleAnim = new Animation<TextureRegion>(0.1f, idleArray, Animation.PlayMode.LOOP_PINGPONG);
-        */
 
     }
 
@@ -113,7 +95,21 @@ public class AnimatedActor extends Actor {
     }
 
 
+    public float getVelocityX() {
+        return velocityX;
+    }
 
+    public float getVelocityY() {
+        return velocityY;
+    }
+
+    public void setVelocityX(float velocityX) {
+        this.velocityX = velocityX;
+    }
+
+    public void setVelocityY(float velocityY) {
+        this.velocityY = velocityY;
+    }
 
 
 

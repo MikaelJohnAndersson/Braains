@@ -93,17 +93,17 @@ public class MyGdxGame extends ApplicationAdapter {
 	@Override
 	public void render () {
 
-		zombie.velocityX = 0;
-		zombie.velocityY = 0;
+		zombie.setVelocityX(0);
+		zombie.setVelocityY(0);
 
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
-			zombie.velocityX -= 100;
+			zombie.setVelocityX(zombie.getVelocityX() - 100);
 		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
-			zombie.velocityX += 100;
+			zombie.setVelocityX(zombie.getVelocityX() + 100);
 		if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
-			zombie.velocityY -= 100;
+			zombie.setVelocityY(zombie.getVelocityY() - 100);
 		if (Gdx.input.isKeyPressed(Input.Keys.UP))
-			zombie.velocityY += 100;
+			zombie.setVelocityY(zombie.getVelocityY() + 100);
 		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
 			moan2.play(0.3f);
 
