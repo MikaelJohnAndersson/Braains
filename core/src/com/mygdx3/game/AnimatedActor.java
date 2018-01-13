@@ -71,6 +71,7 @@ public class AnimatedActor extends Actor {
         return boundary;
     }
 
+    //Method to check if player is moving(Pressing arrow keys)
     public boolean isMoving(){
         if  ((Gdx.input.isKeyPressed(Input.Keys.LEFT)) ||
             (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) ||
