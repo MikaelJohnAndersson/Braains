@@ -21,6 +21,7 @@ public class AnimatedActor extends Actor {
     protected Animation<TextureRegion> moveAnim;
     protected Animation<TextureRegion> idleAnim;
     protected TextureRegion keyframe;
+    protected int textureScale;
 
     //Rectangle for bounds
     protected Rectangle boundary;
@@ -61,12 +62,12 @@ public class AnimatedActor extends Actor {
         else
             this.keyframe.setRegion(this.idleAnim.getKeyFrame(elapsedTime));
 
-        batch.draw(this.keyframe, getX(), getY(), keyframe.getRegionWidth()/6, keyframe.getRegionHeight()/6,
-                keyframe.getRegionWidth()/3, keyframe.getRegionHeight()/3, getScaleX(), getScaleY(), getRotation());
+        batch.draw(this.keyframe, getX(), getY(), getWidth()/2, getHeight()/2,
+                getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
     }
 
     public Rectangle getBoundary() {
-    boundary.set(this.getX(), this.getY(), this.keyframe.getRegionWidth()/5, this.keyframe.getRegionHeight()/5);
+    boundary.set(this.getX(), this.getY(), getWidth(), getHeight());
         return boundary;
     }
 
@@ -97,8 +98,15 @@ public class AnimatedActor extends Actor {
         this.velocityY = velocityY;
     }
 
+    @Override
+    public float getWidth() {
+        return this.keyframe.getRegionWidth() / this.textureScale;
+    }
 
-
+    @Override
+    public float getHeight() {
+        return this.keyframe.getRegionHeight() / this.textureScale;
+    }
 }
 
 

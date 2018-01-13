@@ -19,80 +19,82 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 
 public class MyGdxGame extends ApplicationAdapter {
+
+	Stage stage;
+	Stage uiStage;
 	SpriteBatch batch;
 	Texture groundTexture;
 	ZombiePlayer zombie;
-	Stage stage;
-	Stage uiStage;
-	float dt;
 	Brain brains;
-	int brainsEaten;
+
+	//Variable to hold delta time
+	float dt;
+
 	Sound bite;
 	Sound steps;
 	Sound forest;
 	Sound moan1;
 	Sound moan2;
 	long id;
-	String str;
+
 	Label scoreLabel;
 	LabelStyle style;
-	String text;
-
 	FreeTypeFontGenerator generator;
 	FreeTypeFontParameter parameter;
+	int brainsEaten;
 	
 	@Override
 	public void create () {
 		Gdx.graphics.setTitle("Braaains!");
 
-		batch = new SpriteBatch();
-
+		//Initializing stages
 		stage = new Stage();
 		uiStage = new Stage();
 
+		//Setting up Spritebatch, actors and ground texture
+		batch = new SpriteBatch();
+		groundTexture = new Texture(Gdx.files.internal("grass.png"));
 		zombie = new ZombiePlayer();
 		zombie.setPosition(0,0);
+		brains = new Brain();
+		brains.setPosition(MathUtils.random(0, Gdx.graphics.getWidth()-brains.getWidth()), MathUtils.random(0,Gdx.graphics.getHeight()-brains.getHeight()));
+		//Adding animation action to brain
+		RepeatAction action = Actions.forever(Actions.sequence(Actions.scaleTo(2,2,1), Actions.scaleTo(1,1,1)));
+		brains.addAction(action);
 
+		//Loading sounds
 		bite = Gdx.audio.newSound(Gdx.files.internal("bite.mp3"));
 		steps = Gdx.audio.newSound(Gdx.files.internal("steps.wav"));
 		forest = Gdx.audio.newSound(Gdx.files.internal("forest.mp3"));
 		moan1 = Gdx.audio.newSound(Gdx.files.internal("moan1.wav"));
 		moan2 = Gdx.audio.newSound(Gdx.files.internal("moan2.wav"));
 
+		//Setting fonts and scorelabel
 		generator = new FreeTypeFontGenerator(Gdx.files.internal("Pixeled.ttf"));
 		parameter = new FreeTypeFontParameter();
 		parameter.size = 16;
-		text = "Number of brains eaten: " +brainsEaten;
 		BitmapFont font = generator.generateFont(parameter);
 		style = new LabelStyle(font, Color.BLACK);
-		scoreLabel = new Label(text, style);
+		scoreLabel = new Label("Number of brains eaten: " +brainsEaten , style);
 		scoreLabel.setPosition(10,Gdx.graphics.getHeight()- 40);
+		brainsEaten = 0;
 
-		groundTexture = new Texture(Gdx.files.internal("grass.png"));
-		brains = new Brain();
-		brains.setPosition(MathUtils.random(0, Gdx.graphics.getWidth()-brains.getWidth()), MathUtils.random(0,Gdx.graphics.getHeight()-brains.getHeight()));
-
+		//Adding actors to stages
 		stage.addActor(brains);
 		stage.addActor(zombie);
 		uiStage.addActor(scoreLabel);
-
-		brainsEaten = 0;
 
 		//Looping stepping sound w. zero volume
 		id = steps.loop(0.0f);
 		//Forest sound
 		forest.loop(0.2f);
 
-		str = "Number of brains eaten: ";
-
-		RepeatAction action = Actions.forever(Actions.sequence(Actions.scaleTo(2,2,1), Actions.scaleTo(1,1,1)));
-
-		brains.addAction(action);
 	}
 
 	@Override
 	public void render () {
 
+		//Method to update zombie coordinates relative to player input
 		zombie.setVelocityX(0);
 		zombie.setVelocityY(0);
 
@@ -110,9 +112,9 @@ public class MyGdxGame extends ApplicationAdapter {
 		dt = Gdx.graphics.getDeltaTime();
 		stage.act(dt);
 
-		//Setting position if out of bounds
-		zombie.setX(MathUtils.clamp(zombie.getX(), 0, Gdx.graphics.getWidth()  - zombie.keyframe.getRegionWidth()/3));
-		zombie.setY(MathUtils.clamp(zombie.getY(), 0, Gdx.graphics.getHeight()  - zombie.keyframe.getRegionHeight()/3));
+		//Resetting zombie position if out of bounds
+		zombie.setX(MathUtils.clamp(zombie.getX(), 0, Gdx.graphics.getWidth()  - zombie.getWidth()));
+		zombie.setY(MathUtils.clamp(zombie.getY(), 0, Gdx.graphics.getHeight()  - zombie.getHeight()));
 
 		uiStage.act(dt);
 
@@ -133,6 +135,7 @@ public class MyGdxGame extends ApplicationAdapter {
 			brains.setPosition(MathUtils.random(0, Gdx.graphics.getWidth()-60), MathUtils.random(0,Gdx.graphics.getHeight()-60));
 		}
 
+		//Playing walking sound if zombie is moving
 		if(zombie.isMoving()){
 			steps.setVolume(id, 0.6f);
 		}
@@ -152,5 +155,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		moan2.dispose();
 		moan1.dispose();
 		generator.dispose();
+		stage.dispose();
+		uiStage.dispose();
 	}
 }

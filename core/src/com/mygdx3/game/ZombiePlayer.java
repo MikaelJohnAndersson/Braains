@@ -10,6 +10,7 @@ public class ZombiePlayer extends AnimatedActor {
 
     public ZombiePlayer(){
         super();
+        textureScale = 3; //Downscales texture three times
         moveRegion = new TextureRegion[16]; // Number of animation frames
         idleRegion = new TextureRegion[16];
 
