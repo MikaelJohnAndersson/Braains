@@ -13,21 +13,23 @@ import com.badlogic.gdx.utils.Array;
 
 public class AnimatedActor extends Actor {
 
+    //Arrays and Textureregions for animations
     protected TextureRegion[] moveRegion;
     protected TextureRegion[] idleRegion;
     protected Array<TextureRegion> idleArray;
     protected Array<TextureRegion> moveArray;
     protected Animation<TextureRegion> moveAnim;
     protected Animation<TextureRegion> idleAnim;
-
-
     protected TextureRegion keyframe;
+
+    //Rectangle for bounds
     protected Rectangle boundary;
 
     private float velocityX, velocityY;
+
+    //Variable to fetch correct animation keyframe using elapsed gametime
     protected float elapsedTime;
 
-    protected float lastX, lastY;
 
     public AnimatedActor(){
 
@@ -36,8 +38,6 @@ public class AnimatedActor extends Actor {
         boundary = new Rectangle();
         velocityX = 0;
         velocityY = 0;
-        lastX = 0;
-        lastY = 0;
         elapsedTime = 0;
 
     }
@@ -51,7 +51,6 @@ public class AnimatedActor extends Actor {
         if (velocityX != 0 || velocityY != 0){
             setRotation(MathUtils.atan2(velocityY,velocityX) * MathUtils.radiansToDegrees);
         }
-
 
     }
 
@@ -79,19 +78,6 @@ public class AnimatedActor extends Actor {
                 return true;
         }
         return false;
-    }
-
-    private boolean collision(){
-        if (this.getX() + this.keyframe.getRegionWidth() > Gdx.graphics.getWidth()
-            ||
-            (this.getX()< 0)
-            ||
-            (this.getY() + this.keyframe.getRegionHeight() > Gdx.graphics.getHeight())
-            ||
-            (this.getY() < 0)){
-            return true;
-        }
-    return false;
     }
 
 
