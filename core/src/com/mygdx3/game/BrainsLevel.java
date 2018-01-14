@@ -113,6 +113,8 @@ public class BrainsLevel implements Screen {
 			zombie.setVelocityY(zombie.getVelocityY() + 100);
 		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
 			moan2.play(0.3f);
+		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
+			game.setScreen(new BrainsMenu(game));
 
 		stage.act(dt);
 

@@ -6,7 +6,7 @@ public class MyGdxGame3 extends Game{
 
     @Override
     public void create() {
-        BrainsLevel bl = new BrainsLevel(this);
+        BrainsMenu bl = new BrainsMenu(this);
         setScreen(bl);
     }
 }
