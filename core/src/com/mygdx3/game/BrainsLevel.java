@@ -1,8 +1,6 @@
 package com.mygdx3.game;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -18,7 +16,9 @@ import com.badlogic.gdx.scenes.scene2d.actions.RepeatAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 
-public class MyGdxGame extends ApplicationAdapter {
+public class BrainsLevel implements Screen {
+
+	Game game;
 
 	Stage stage;
 	Stage uiStage;
@@ -42,8 +42,13 @@ public class MyGdxGame extends ApplicationAdapter {
 	FreeTypeFontGenerator generator;
 	FreeTypeFontParameter parameter;
 	int brainsEaten;
-	
-	@Override
+
+
+	public BrainsLevel(Game g){
+	game = g;
+	create();
+	}
+
 	public void create () {
 		Gdx.graphics.setTitle("Braaains!");
 
@@ -92,7 +97,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	}
 
 	@Override
-	public void render () {
+	public void render (float dt) {
 
 		//Method to update zombie coordinates relative to player input
 		zombie.setVelocityX(0);
@@ -109,7 +114,6 @@ public class MyGdxGame extends ApplicationAdapter {
 		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
 			moan2.play(0.3f);
 
-		dt = Gdx.graphics.getDeltaTime();
 		stage.act(dt);
 
 		//Resetting zombie position if out of bounds
@@ -157,5 +161,30 @@ public class MyGdxGame extends ApplicationAdapter {
 		generator.dispose();
 		stage.dispose();
 		uiStage.dispose();
+	}
+
+	@Override
+	public void show() {
+
+	}
+
+	@Override
+	public void resize(int width, int height) {
+
+	}
+
+	@Override
+	public void pause() {
+
+	}
+
+	@Override
+	public void resume() {
+
+	}
+
+	@Override
+	public void hide() {
+
 	}
 }
