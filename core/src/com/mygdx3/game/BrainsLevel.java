@@ -92,7 +92,7 @@ public class BrainsLevel implements Screen {
 		//Looping stepping sound w. zero volume
 		id = steps.loop(0.0f);
 		//Forest sound
-		forest.loop(0.2f);
+		forest.loop(0.3f);
 
 	}
 
@@ -112,7 +112,7 @@ public class BrainsLevel implements Screen {
 		if (Gdx.input.isKeyPressed(Input.Keys.UP))
 			zombie.setVelocityY(zombie.getVelocityY() + 100);
 		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
-			moan2.play(0.3f);
+			moan2.play(0.4f);
 		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
 			forest.stop();
 			game.setScreen(new BrainsMenu(game));}
@@ -136,15 +136,15 @@ public class BrainsLevel implements Screen {
 		//Checks if zombie ate brains
 		if (zombie.getBoundary().overlaps(brains.getBoundary())){
 			brainsEaten++;
-			bite.play(0.2f);
-			moan1.play(0.1f);
+			bite.play(0.3f);
+			moan1.play(0.2f);
 			scoreLabel.setText("Number of brains eaten: " +brainsEaten);
 			brains.setPosition(MathUtils.random(0, Gdx.graphics.getWidth()-60), MathUtils.random(0,Gdx.graphics.getHeight()-60));
 		}
 
 		//Playing walking sound if zombie is moving
 		if(zombie.isMoving()){
-			steps.setVolume(id, 0.4f);
+			steps.setVolume(id, 0.5f);
 		}
 		else{
 			steps.setVolume(id, 0.0f);

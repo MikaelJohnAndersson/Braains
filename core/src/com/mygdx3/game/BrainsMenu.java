@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -20,6 +21,7 @@ public class BrainsMenu implements Screen{
     private TextureRegion backgroundRegion;
     private SpriteBatch batch;
     private MenuText menuText;
+    private Sound theme;
 
 
     public BrainsMenu(Game g){
@@ -34,10 +36,14 @@ public class BrainsMenu implements Screen{
         batch = new SpriteBatch();
         menuText = new MenuText();
 
+        theme = Gdx.audio.newSound(Gdx.files.internal("brainsTheme.mp3"));
+
         RepeatAction action = Actions.forever(Actions.sequence(Actions.scaleTo((float)1.1,(float)1.1,1), Actions.scaleTo(1,1,1)));
         menuText.addAction(action);
 
         uiStage.addActor(menuText);
+
+        theme.loop(0.2f);
 
     }
 
@@ -49,8 +55,9 @@ public class BrainsMenu implements Screen{
     @Override
     public void render(float dt) {
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER))
-            game.setScreen(new BrainsLevel(game));
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
+            theme.stop();
+            game.setScreen(new BrainsLevel(game));}
 
         uiStage.act(dt);
 
