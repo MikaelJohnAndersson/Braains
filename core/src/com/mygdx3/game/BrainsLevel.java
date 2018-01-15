@@ -64,7 +64,7 @@ public class BrainsLevel implements Screen {
 		brains = new Brain();
 		brains.setPosition(MathUtils.random(0, Gdx.graphics.getWidth()-brains.getWidth()), MathUtils.random(0,Gdx.graphics.getHeight()-brains.getHeight()));
 		//Adding animation action to brain
-		RepeatAction action = Actions.forever(Actions.sequence(Actions.scaleTo(2,2,1), Actions.scaleTo(1,1,1)));
+		RepeatAction action = Actions.forever(Actions.sequence(Actions.scaleTo((float)1.5,(float)1.5,1), Actions.scaleTo(1,1,1)));
 		brains.addAction(action);
 
 		//Loading sounds
