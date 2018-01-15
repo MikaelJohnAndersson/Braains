@@ -16,7 +16,6 @@ public class MenuText extends Actor{
         super();
         texture = new Texture(Gdx.files.internal("pressEnter.png"));
         region = new TextureRegion(texture);
-        setOrigin(region.getRegionWidth()/2, region.getRegionHeight()/2);
     }
 
     @Override

@@ -113,8 +113,9 @@ public class BrainsLevel implements Screen {
 			zombie.setVelocityY(zombie.getVelocityY() + 100);
 		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
 			moan2.play(0.3f);
-		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
-			game.setScreen(new BrainsMenu(game));
+		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
+			forest.stop();
+			game.setScreen(new BrainsMenu(game));}
 
 		stage.act(dt);
 
@@ -143,7 +144,7 @@ public class BrainsLevel implements Screen {
 
 		//Playing walking sound if zombie is moving
 		if(zombie.isMoving()){
-			steps.setVolume(id, 0.6f);
+			steps.setVolume(id, 0.4f);
 		}
 		else{
 			steps.setVolume(id, 0.0f);

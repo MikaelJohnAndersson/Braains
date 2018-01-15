@@ -34,7 +34,7 @@ public class BrainsMenu implements Screen{
         batch = new SpriteBatch();
         menuText = new MenuText();
 
-        RepeatAction action = Actions.forever(Actions.sequence(Actions.scaleTo(1,1,1), Actions.scaleTo(0,0,1)));
+        RepeatAction action = Actions.forever(Actions.sequence(Actions.scaleTo((float)1.1,(float)1.1,1), Actions.scaleTo(1,1,1)));
         menuText.addAction(action);
 
         uiStage.addActor(menuText);
