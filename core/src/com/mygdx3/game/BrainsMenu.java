@@ -38,6 +38,7 @@ public class BrainsMenu implements Screen{
 
         theme = Gdx.audio.newSound(Gdx.files.internal("brainsTheme.mp3"));
 
+        //Adding pulsing animation to menu text
         RepeatAction action = Actions.forever(Actions.sequence(Actions.scaleTo((float)1.1,(float)1.1,1), Actions.scaleTo(1,1,1)));
         menuText.addAction(action);
 

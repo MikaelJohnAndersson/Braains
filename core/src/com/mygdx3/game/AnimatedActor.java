@@ -46,9 +46,13 @@ public class AnimatedActor extends Actor {
     public void act(float dt){
         super.act(dt);
 
+        //Moves actor in both axises according to velocity times DT
         moveBy(velocityX * dt, velocityY * dt);
 
+        //Incrementing elapsed time with DT
         elapsedTime += dt;
+
+        //Rotates actor according to x/y velocity
         if (velocityX != 0 || velocityY != 0){
             setRotation(MathUtils.atan2(velocityY,velocityX) * MathUtils.radiansToDegrees);
         }

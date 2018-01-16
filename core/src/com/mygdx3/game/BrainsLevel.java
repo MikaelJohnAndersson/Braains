@@ -18,30 +18,27 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 
 public class BrainsLevel implements Screen {
 
-	Game game;
+	private Game game;
 
-	Stage stage;
-	Stage uiStage;
-	SpriteBatch batch;
-	Texture groundTexture;
-	ZombiePlayer zombie;
-	Brain brains;
+	private Stage stage;
+	private Stage uiStage;
+	private SpriteBatch batch;
+	private Texture groundTexture;
+	private ZombiePlayer zombie;
+	private Brain brains;
 
-	//Variable to hold delta time
-	float dt;
+	private Sound bite;
+	private Sound steps;
+	private Sound forest;
+	private Sound moan1;
+	private Sound moan2;
+	private long id;
 
-	Sound bite;
-	Sound steps;
-	Sound forest;
-	Sound moan1;
-	Sound moan2;
-	long id;
-
-	Label scoreLabel;
-	LabelStyle style;
-	FreeTypeFontGenerator generator;
-	FreeTypeFontParameter parameter;
-	int brainsEaten;
+	private Label scoreLabel;
+	private LabelStyle style;
+	private FreeTypeFontGenerator generator;
+	private FreeTypeFontParameter parameter;
+	private int brainsEaten;
 
 
 	public BrainsLevel(Game g){

@@ -9,8 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class Brain extends Actor {
 
-    TextureRegion brain;
-    Rectangle boundary;
+    private TextureRegion brain;
+    private Rectangle boundary;
 
     public Brain(){
         super();
