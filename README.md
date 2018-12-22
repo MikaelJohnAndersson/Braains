@@ -1,5 +1,5 @@
 # Braains
-A simple game made with the libGdx framework. Configured for desktop only.
+A simple game running on desktop.
 
 How many braains can you eat?
 
